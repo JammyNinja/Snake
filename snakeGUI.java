@@ -1,5 +1,5 @@
 import javax.swing.*; //JPanel/containers/scrollpane
-import java.awt.*; //Dimension/colour/graphics
+import java.awt.*; //Dimension/colour/graphics + Point
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
@@ -65,16 +65,28 @@ public class snakeGUI extends JPanel
 	public void paintSnake(Graphics g){
 		g.setColor(snakeColour);
 		int snakeHeight = 10 * cellHeight;
-		for(int i = 10; i<15; i++){
-				//g.fillRect(i*cellWidth, snakeHeight, cellWidth, cellHeight);//x,y,width,height
-		}
-		for (int bodyPart : snake.body){
-			g.fillRect(bodyPart*cellWidth, snakeHeight, cellWidth, cellHeight);//x,y,width,height
+
+		for (Point bodyPart : snake.body){
+			g.fillRect(bodyPart.x*cellWidth, bodyPart.y * cellHeight, cellWidth, cellHeight);//x,y,width,height
 		}
 	}
 	// INPUT
 	public void keyPressed(KeyEvent e){
 		switch(e.getKeyCode()){
+			case KeyEvent.VK_UP:
+			System.out.println("UP!");
+			snake.moveUp();
+			repaint();
+			break;
+			case KeyEvent.VK_DOWN:
+			System.out.println("DOWN!");
+			break;
+			case KeyEvent.VK_LEFT:
+			System.out.println("LEFT!");
+			break;
+			case KeyEvent.VK_RIGHT:
+			System.out.println("RIGHT!");
+			break;
 			case KeyEvent.VK_SPACE:
 			//game.test();
 			break;
