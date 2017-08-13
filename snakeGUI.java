@@ -64,7 +64,6 @@ public class snakeGUI extends JPanel
 
 	public void paintSnake(Graphics g){
 		g.setColor(snakeColour);
-		int snakeHeight = 10 * cellHeight;
 
 		for (Point bodyPart : snake.body){
 			g.fillRect(bodyPart.x*cellWidth, bodyPart.y * cellHeight, cellWidth, cellHeight);//x,y,width,height

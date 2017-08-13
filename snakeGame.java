@@ -4,7 +4,15 @@ import javax.swing.*; // timer
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 public class snakeGame implements ActionListener{
+/* ToDo
+current: paint a whole snake
 
+	game edge kill
+	food
+	points
+	game over / restart
+
+*/
 	static snakeGame game;
 	static snakeGUI gui;
 	static snake snake;
@@ -33,7 +41,7 @@ public class snakeGame implements ActionListener{
 
 class snake {
 	int headX, headY;
-	ArrayList<Point> body; //size(),add(),get(i), remove()
+	static ArrayList<Point> body; //size(),add(),get(i), remove()
 	int direction; //0 north, 1 east, 2 south, 3 west //for now? is there better?
 
 	public snake(){
@@ -42,21 +50,23 @@ class snake {
 		body.add(new Point(10,5));
 		body.add(new Point(11,5));
 		body.add(new Point(12,5));
-		direction = 1;
+		//body.add(new Point(13,5));
+		//body.add(new Point(14,5));
+		
+		direction = 3;
 
 	}
 	public void snakeHi(){
 		System.out.println("snake says hi!");
 
-		System.out.println(body);
-		System.out.println(body.size());
-		print(body.get(1));
-
-
+		System.out.println("snake: " + body);
+		System.out.println("snakelength:" + body.size());
 	}
-	public void move(){
-		//use direction to move head
-		Point head = body.get(0);
+	public void move(){	
+		print("moving snake " + body);		//use direction to move head
+		Point head = new Point();
+		head.x = body.get(0).x;
+		head.y = body.get(0).y;
 		switch(direction){
 			case 0: //north
 				head.y--;
@@ -73,14 +83,15 @@ class snake {
 		}
 
 		//body follows itself
-		for (int i = 1; i<body.size(); i++){
-			Point destination = body.get(i-1);
-			body.set(i, destination);
+		for (int i=body.size()-1; i>0; i--){
+			Point next = body.get(i-1);
+			print("i = " +i+" next: " + next);
+			Point test = new Point(next.x, next.y);
+			body.set(i, test);
 		}
-		//move head having used it for first body part
 		body.set(0,head);
-
-		//tail dissappears
+		//move head having used it for first body part
+		print(body + "\n");
 	}
 	public void moveUp(){
 		for (int i = 0; i<body.size(); i++){
