@@ -23,7 +23,6 @@ public class snakeGUI extends JPanel
 
 		f = new Frame();
 		initialiseGUI(f);
-		snake.snakeHi();
 	}
 	public void initialiseGUI (Frame f){
 		//some visual constants
@@ -60,6 +59,12 @@ public class snakeGUI extends JPanel
 		for(int j=0; j<=gridYNum; j++){
 			g.drawLine(0,j*cellHeight, gameWidth, j*cellHeight); //x1,y1,x2,y2
 		}
+
+		//paint food
+		if(game.foodAvailable){
+			g.setColor(Color.GREEN);
+			g.fillRect(game.food.x*cellWidth, game.food.y*cellHeight, cellWidth, cellHeight);
+		}
 	}
 
 	public void paintSnake(Graphics g){
@@ -68,33 +73,36 @@ public class snakeGUI extends JPanel
 		for (Point bodyPart : snake.body){
 			g.fillRect(bodyPart.x*cellWidth, bodyPart.y * cellHeight, cellWidth, cellHeight);//x,y,width,height
 		}
+		//draw head
+		g.setColor(Color.CYAN);
+		g.fillRect(snake.body.get(0).x*cellWidth, snake.body.get(0).y * cellHeight, cellWidth, cellHeight);//x,y,width,height
+
 	}
 	// INPUT
 	public void keyPressed(KeyEvent e){
 		switch(e.getKeyCode()){
 			case KeyEvent.VK_UP:
-			System.out.println("UP!");
-			//snake.moveUp();
-			snake.direction = 0;
+				System.out.println("UP!");
+				snake.direction = 0;
 			break;
 			case KeyEvent.VK_DOWN:
-			System.out.println("DOWN!");
-			snake.direction = 2;
+				System.out.println("DOWN!");
+				snake.direction = 2;
 			break;
 			case KeyEvent.VK_LEFT:
-			System.out.println("LEFT!");
-			snake.direction = 3;
+				System.out.println("LEFT!");
+				snake.direction = 3;
 			break;
 			case KeyEvent.VK_RIGHT:
-			System.out.println("RIGHT!");
-			snake.direction = 1;
+				System.out.println("RIGHT!");
+				snake.direction = 1;
 			break;
 			case KeyEvent.VK_SPACE:
-			//game.test();
+				game.newGame();
 			//pause?
 			break;
 			case KeyEvent.VK_ESCAPE:
-			System.exit(0);
+				System.exit(0);
 			break;
 		}
 	}
