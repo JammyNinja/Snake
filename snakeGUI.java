@@ -75,20 +75,24 @@ public class snakeGUI extends JPanel
 		switch(e.getKeyCode()){
 			case KeyEvent.VK_UP:
 			System.out.println("UP!");
-			snake.moveUp();
-			repaint();
+			//snake.moveUp();
+			snake.direction = 0;
 			break;
 			case KeyEvent.VK_DOWN:
 			System.out.println("DOWN!");
+			snake.direction = 2;
 			break;
 			case KeyEvent.VK_LEFT:
 			System.out.println("LEFT!");
+			snake.direction = 3;
 			break;
 			case KeyEvent.VK_RIGHT:
 			System.out.println("RIGHT!");
+			snake.direction = 1;
 			break;
 			case KeyEvent.VK_SPACE:
 			//game.test();
+			//pause?
 			break;
 			case KeyEvent.VK_ESCAPE:
 			System.exit(0);
